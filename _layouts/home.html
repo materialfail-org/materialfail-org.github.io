@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include head.html %}
+    {% include meta.html %}
+  </head>
+  <body>
+    <div class="backround-image">
+      <div class="content-container">
+
+        {% assign isHome = page.title | slugify | replace:'-','' %}
+        <div class="info-container {{ isHome }}">
+          <div class="info-container-left {{ isHome }}">
+            <a class="home-link {{ isHome }}" href="{{ site.baseurl }}/">material.fail</a>
+          </div>
+          <div class="info-container-right">
+            <div class="info-container-top">
+              <div class="info-title-wrapper">
+                <a class="home-link mobile {{ isHome }}" href="{{ site.baseurl }}/">material.fail</a>
+                <div class="info-title {{ isHome }}">{{ page.title }}</div>
+              </div>
+
+              <div class="info-text" id="intro-text">
+                <div id="info-en" class="info-content">{{ page.about-en }}</div>
+                <div id="info-es" class="info-content">{{ page.about-es }}</div>
+                <div id="info-pt" class="info-content">{{ page.about-pt }}</div>
+
+                {% if page.site %}
+                  <a class="publisher-link" href={{ page.site }} target="_blank">{{ page.site }}</a>
+                {% endif %}
+              </div>
+
+              <div class="info-languages">
+                <div class="language-selector">en</div>
+                <div class="language-selector">es</div>
+                <div class="language-selector">pt</div>
+              </div>
+            </div>
+
+            <div class="info-container-bottom">
+              <!-- links to about pages etc -->
+            </div>
+          </div>
+
+        </div>
+
+        <div class="list-container">
+          <div class="list-background-container">
+            <div class="list-background" id="the-background-image"></div>
+          </div>
+
+          <div class="list-content-container">
+            <div class="list-content">
+              <div class="list-content-align">
+                {% if page.title == "material.fail" %}
+                  {% assign publishers = site.pages | where_exp:"page","page.unlist != true" %}
+
+                  {% capture pubsmegazord %}
+                    {% for pub in publishers %}
+                      ‡{{pub.title | slugify:"latin"}}√{{pub.url}}√{{pub.title}}
+                    {% endfor %}
+                  {% endcapture %}
+
+                  {% assign pubsobjslist = pubsmegazord | split:"‡" | sort %}
+
+                  {% assign lastLetter = "" %}
+                  <ul>
+                  {% for pubobj in pubsobjslist %}
+                    {% assign pubdata = pubobj | split:"√" %}
+                    {% if pubdata[2] %}
+                      {% assign thisLetter = pubdata[2] | slice: 0 %}
+                      {% if thisLetter != lastLetter %}
+                        {% assign lastLetter = thisLetter %}
+                        {% assign thisClass = "list-item-index" %}
+                      {% else %}
+                        {% assign thisClass = "list-item-index list-item-index-hidden" %}
+                      {% endif %}
+                      <li>
+                        <div class="{{ thisClass }}">{{ thisLetter }}</div>
+                        <a href="{{ site.baseurl }}{{ pubdata[1] }}">{{ pubdata[2] }}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                  </ul>
+
+                {% elsif page.title == "404" %}
+                  <div class="_404-text">404<br>404<br>404<br>404</div>
+
+                {% elsif page.books %}
+                  {% capture booksmegazord %}
+                    {% for book in page.books %}
+                      ‡{{book.title | slugify:"latin"}}√{{book.link}}√{{book.title}}
+                    {% endfor %}
+                  {% endcapture %}
+
+                  {% assign booksobjslist = booksmegazord | split:"‡" | sort %}
+
+                  {% assign lastLetter = "" %}
+                  <ul>
+                  {% for bookobj in booksobjslist %}
+                    {% assign bookdata = bookobj | split:"√" %}
+                    {% if bookdata[2] %}
+                      {% assign thisLetter = bookdata[2] | slice: 0 %}
+                      {% if thisLetter != lastLetter %}
+                        {% assign lastLetter = thisLetter %}
+                        {% assign thisClass = "list-item-index" %}
+                      {% else %}
+                        {% assign thisClass = "list-item-index list-item-index-hidden" %}
+                      {% endif %}
+                      <li>
+                        <div class="{{ thisClass }}">{{ thisLetter }}</div>
+                        <a href="{{ bookdata[1] }}" target="_blank">{{ bookdata[2] }}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

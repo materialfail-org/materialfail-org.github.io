@@ -1,0 +1,31 @@
+$FONT-SANS: 'liberation-sans', 'Arial', sans-serif;
+$FONT-SERIF: 'liberation-serif', 'Times';
+
+$INFO-TEXT-SIZE: 12px;
+$LIST-TEXT-SIZE: 18px;
+
+$CONTENT-LEFT-MARGIN: 35%;
+$INFO-COLUMN-WIDTH: 180px;
+
+//$BACKGROUND-COLOR: #7c8796;
+//$FOREGROUND-COLOR: #7c8796;
+//$TEXT-COLOR: #fff;
+
+$BACKGROUND-COLOR: #fff;
+$FOREGROUND-COLOR: #fff;
+$TEXT-COLOR: #222;
+$LIST-INDEX-COLOR: #0ff;
+
+$LINK-COLOR: $TEXT-COLOR;
+$LINK-COLOR-VISITED: $LINK-COLOR;
+$LINK-COLOR-HOVER: $LINK-COLOR;
+
+$DESKTOP-MIN-WIDTH: 800px;
+
+$TRANSITION-PERIOD: 0.1s;
+
+@mixin media-query($canvas) {
+  @if $canvas == DESKTOP {
+   @media only screen and (min-width: $DESKTOP-MIN-WIDTH) { @content; }
+  }
+}
