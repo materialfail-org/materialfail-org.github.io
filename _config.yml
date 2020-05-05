@@ -10,7 +10,7 @@ include: ['_pages']
 collections:
   pages:
     output: true
-    permalink: /:name
+    permalink: /:name/
 
 
 # Build settings
