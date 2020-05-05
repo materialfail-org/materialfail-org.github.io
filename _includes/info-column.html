@@ -1,6 +1,11 @@
 {% assign isHome = page.title | slugify | replace:'-','' %}
 {% assign homeList = site.pages | where:'title',"material.fail" %}
-{% assign homePage = homeList.first %}
+
+{% if include.right %}
+  {% assign homePage = page %}
+{% else %}
+  {% assign homePage = homeList.first %}
+{% endif %}
 
 <div class="info-container-top">
   <div class="info-title-wrapper {{ isHome }}">
