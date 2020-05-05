@@ -18,8 +18,10 @@ function clearLanguageSelection() {
 function selectThisLanguage() {
   clearLanguageSelection();
   this.classList.add('selected');
-  const infoDiv = document.getElementById(`info-${this.innerHTML}`);
-  infoDiv.style.display = 'block';
+  const infoDivs = document.getElementsByClassName(`info-${this.innerHTML}`);
+  for (let i = 0; i < infoDivs.length; i++) {
+    infoDivs[i].style.display = 'block';
+  }
 }
 
 function dayOfYear() {

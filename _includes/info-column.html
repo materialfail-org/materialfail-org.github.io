@@ -1,0 +1,30 @@
+{% assign isHome = page.title | slugify | replace:'-','' %}
+{% assign homeList = site.pages | where:'title',"material.fail" %}
+{% assign homePage = homeList.first %}
+
+<div class="info-container-top">
+  <div class="info-title-wrapper {{ isHome }}">
+    <a class="home-link {{ isHome }}" href="{{ site.baseurl }}/">material.fail</a>
+    <div class="info-title {{ isHome }}">{{ page.title }}</div>
+  </div>
+
+  <div class="info-text">
+    <div id="info-en-id" class="info-content info-en">{{ homePage.about-en }}</div>
+    <div id="info-es-id" class="info-content info-es">{{ homePage.about-es }}</div>
+    <div id="info-pt-id" class="info-content info-pt">{{ homePage.about-pt }}</div>
+
+    {% if page.site %}
+      <a class="publisher-link" href={{ page.site }} target="_blank">{{ page.site }}</a>
+    {% endif %}
+  </div>
+
+  <div class="info-languages">
+    <div class="language-selector">en</div>
+    <div class="language-selector">es</div>
+    <div class="language-selector">pt</div>
+  </div>
+</div>
+
+<div class="info-container-bottom">
+  <!-- links to about pages etc -->
+</div>
