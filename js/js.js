@@ -34,8 +34,12 @@ function dayOfYear() {
 function setBackgroundImage() {
   const backgroundImageElement = document.getElementById('the-background-image');
   const urlLength = window.location.href.replace(/\//g, '').length;
-  const dailyRandomNumber = (urlLength + dayOfYear()) % 10;
-  const newImageUrl = `url({{ site.baseurl }}/media/images/backgrounds/background-sq-${dailyRandomNumber}.jpg)`;
+  // const dailyRandomNumber = (urlLength + dayOfYear()) % 10;
+  // const newImageUrl = `url({{ site.baseurl }}/media/images/backgrounds/background-sq-${dailyRandomNumber}.jpg)`;
+
+  const dailyRandomNumber = (urlLength + dayOfYear()) % 6;
+  const newImageUrl = `url({{ site.baseurl }}/media/images/backgrounds/background-crack-${dailyRandomNumber}.jpg)`;
+  // const newImageUrl = `url({{ site.baseurl }}/media/images/backgrounds/background-spine.jpg)`;
   backgroundImageElement.style['background-image'] = newImageUrl;
 }
 
